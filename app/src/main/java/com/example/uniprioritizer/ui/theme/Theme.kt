@@ -1,57 +1,71 @@
 package com.example.uniprioritizer.ui.theme
 
-import android.app.Activity
-import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
-import androidx.compose.material3.dynamicDarkColorScheme
-import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.platform.LocalContext
-
-private val DarkColorScheme = darkColorScheme(
-    primary = Purple80,
-    secondary = PurpleGrey80,
-    tertiary = Pink80
-)
+import androidx.compose.ui.graphics.Color
+import com.example.uniprioritizer.domain.model.ThemeMode
 
 private val LightColorScheme = lightColorScheme(
-    primary = Purple40,
-    secondary = PurpleGrey40,
-    tertiary = Pink40
-
-    /* Other default colors to override
-    background = Color(0xFFFFFBFE),
-    surface = Color(0xFFFFFBFE),
+    primary = Forest40,
     onPrimary = Color.White,
+    primaryContainer = Forest90,
+    onPrimaryContainer = Forest10,
+    secondary = Sage40,
     onSecondary = Color.White,
+    secondaryContainer = Sage90,
+    onSecondaryContainer = Forest10,
+    tertiary = Forest10,
     onTertiary = Color.White,
-    onBackground = Color(0xFF1C1B1F),
-    onSurface = Color(0xFF1C1B1F),
-    */
+    tertiaryContainer = Mist80,
+    onTertiaryContainer = Forest10,
+    background = Paper,
+    onBackground = Forest10,
+    surface = Paper,
+    onSurface = Forest10,
+    surfaceVariant = Sage90,
+    onSurfaceVariant = Sage50,
+    errorContainer = Amber90,
+    onErrorContainer = Amber40
+)
+
+private val DarkColorScheme = darkColorScheme(
+    primary = Forest80,
+    onPrimary = Forest10,
+    primaryContainer = Forest30,
+    onPrimaryContainer = Forest90,
+    secondary = Sage80,
+    onSecondary = Forest10,
+    secondaryContainer = Sage25,
+    onSecondaryContainer = Sage90,
+    tertiary = Forest30,
+    onTertiary = Forest90,
+    tertiaryContainer = Sage50,
+    onTertiaryContainer = Forest90,
+    background = Night,
+    onBackground = Sage90,
+    surface = Night,
+    onSurface = Sage90,
+    surfaceVariant = NightSurface,
+    onSurfaceVariant = Sage80,
+    errorContainer = Amber20,
+    onErrorContainer = Amber80
 )
 
 @Composable
 fun UniPrioritizerTheme(
-    darkTheme: Boolean = isSystemInDarkTheme(),
-    // Dynamic color is available on Android 12+
-    dynamicColor: Boolean = false,
+    themeMode: ThemeMode = ThemeMode.SYSTEM,
     content: @Composable () -> Unit
 ) {
-    val colorScheme = when {
-        dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
-            val context = LocalContext.current
-            if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
-        }
-
-        darkTheme -> DarkColorScheme
-        else -> LightColorScheme
+    val darkTheme = when (themeMode) {
+        ThemeMode.SYSTEM -> isSystemInDarkTheme()
+        ThemeMode.LIGHT -> false
+        ThemeMode.DARK -> true
     }
-
     MaterialTheme(
-        colorScheme = colorScheme,
+        colorScheme = if (darkTheme) DarkColorScheme else LightColorScheme,
         typography = Typography,
         content = content
     )
