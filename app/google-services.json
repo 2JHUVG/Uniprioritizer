@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "608592192281",
+    "project_id": "uniprioritizer",
+    "storage_bucket": "uniprioritizer.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:608592192281:android:bc63c40f5dc60541259b88",
+        "android_client_info": {
+          "package_name": "com.hdulam.uniprioritizer"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCPllEHRFJcJSFheNBCfnOV82ctX0RjD9Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
